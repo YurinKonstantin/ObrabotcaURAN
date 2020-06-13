@@ -54,10 +54,11 @@ namespace ObrabotcaURAN
             }
             return false;
         }
-        public static int[] FirstTme(int[] maxTime, int[] maxAmp, int porog, int[,] data, double[] NullLine, ref int[] polMaxTime)
+        public static int[] FirstTme(int[] maxTime, int[] maxAmp, int porog, int[,] data, double[] NullLine, ref int[] polMaxTime, out int[] A34, out int[] A14)
         {
             int[] firstTime  = new int[12];
-             
+            A34 = new int[12];
+            A14 = new int[12];
             for (int i = 0; i < 12; i++)
             {
                int mTime = maxTime[i];
@@ -71,7 +72,16 @@ namespace ObrabotcaURAN
                     {
                         polMaxTime[i] = j;
                     }
+                    if (data[i, j] >= (((maxAmp[i] / 4)*3) + NullLine[i]))
+                    {
+                        A34[i] = j;
+                    }
+                    if (data[i, j] >= (((maxAmp[i] / 4)) + NullLine[i]))
+                    {
+                        A14[i] = j;
+                    }
                 }
+            
             }
 
 
